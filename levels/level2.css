@@ -1,0 +1,15 @@
+/* Gate 2 styles */
+
+/* The ninja makes the first half vanish... */
+.ninja-scroll {
+  display: none;
+}
+
+.decoy {
+  color: var(--accent);
+}
+
+/*
+  Second half of scroll #2 (ink smudged, but still readable):
+  l3m3nt_r3v34ls_4ll}
+*/

@@ -1,0 +1,7 @@
+# Ryzen Ronin Dojo — robots.txt
+# Dear robots: please stay out of our private places.
+# (Paths below are relative to the dojo root, the folder containing index.html.)
+
+User-agent: *
+Disallow: /shadow-archive/
+Disallow: /sensei-tea-stash/

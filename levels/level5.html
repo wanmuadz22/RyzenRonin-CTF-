@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gate 5 · The Shogun's Cookie</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <a class="brand" href="../index.html"><span class="mon">浪</span> RYZEN RONIN DOJO</a>
+      <span class="pill">GATE 5 · 150 PTS</span>
+    </header>
+
+    <h1>The Shogun's Cookie</h1>
+    <p class="lede">The dojo remembers who you are. But who decides what it remembers?</p>
+
+    <div class="card story">
+      <p>
+        When you entered this hall, the dojo handed you a small token that states your rank.
+        Scroll #5 may only be read by the <strong>shogun</strong>, the highest rank in the land.
+      </p>
+      <p>The guards never double-check. They simply read whatever token you carry…</p>
+    </div>
+
+    <div class="card">
+      <h2>Rank check</h2>
+      <p>Your current rank: <code id="rank">…</code></p>
+      <div id="result" hidden></div>
+      <div style="margin-top:14px"><button class="btn ghost" onclick="location.reload()">Check again (reload)</button></div>
+    </div>
+
+    <div class="card">
+      <details class="hint"><summary>Hint 1</summary>
+        <p>The "token" is a <strong>cookie</strong>. Cookies are stored in <em>your</em> browser, which means you can read and change them.</p>
+      </details>
+      <details class="hint"><summary>Hint 2</summary>
+        <p>DevTools → <strong>Application</strong> tab → Storage → <strong>Cookies</strong> (Chrome/Edge), or <strong>Storage</strong> tab → Cookies (Firefox). Double-click a value to edit it.</p>
+      </details>
+      <details class="hint"><summary>Hint 3</summary>
+        <p>Change your rank cookie's value to <code>shogun</code>, then reload. Console alternative: <code>document.cookie = "dojo_rank=shogun"</code></p>
+      </details>
+    </div>
+
+    <p class="back"><a href="level4.html">← Previous gate</a> · <a href="../index.html">Dojo</a> · <a href="level6.html">Next gate →</a></p>
+  </div>
+
+  <script>
+    // Rank system — "the server said so" (there is no server)
+    const SCROLL_FIVE = [33, 17, 21, 2, 27, 60, 28, 6, 6, 9, 14, 13, 67, 88, 4, 86, 70, 29, 44, 92,
+      29, 84, 42, 27, 0, 91, 29, 56, 22, 94, 29, 28, 29, 87, 25, 2, 64, 12, 18];
+
+    function getCookie(name) {
+      const match = document.cookie.split("; ").find(c => c.startsWith(name + "="));
+      return match ? decodeURIComponent(match.split("=")[1]) : null;
+    }
+
+    let rank = getCookie("dojo_rank");
+    if (!rank) {
+      document.cookie = "dojo_rank=ronin; SameSite=Lax";
+      rank = "ronin";
+    }
+
+    document.getElementById("rank").textContent = rank;
+    const out = document.getElementById("result");
+    out.hidden = false;
+
+    if (rank.trim().toLowerCase() === "shogun") {
+      const key = "shogun";
+      out.className = "flagbox";
+      out.textContent = "Bow, Shogun. Scroll #5: " +
+        SCROLL_FIVE.map((b, i) => String.fromCharCode(b ^ key.charCodeAt(i % key.length))).join("");
+    } else {
+      out.className = "denied";
+      out.textContent = "A mere '" + rank + "' may not read this scroll. Only the shogun may pass.";
+    }
+  </script>
+</body>
+</html>

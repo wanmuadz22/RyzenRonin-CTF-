@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ryzen Ronin Dojo</title>
+  <meta name="description" content="A beginner-friendly web exploitation CTF. Six levels, six flags. Format: RyzenRonin{...}">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <a class="brand" href="index.html"><span class="mon">浪</span> RYZEN RONIN DOJO</a>
+      <span class="pill">WEB · BEGINNER · 700 PTS</span>
+    </header>
+
+    <h1>Six gates. Six flags. One ronin.</h1>
+    <p class="lede">
+      A masterless samurai has hidden six scrolls across this dojo. Each gate hides one classic
+      beginner web-exploitation lesson. Find every flag in the format <code>RyzenRonin{...}</code> and submit it below.
+    </p>
+
+    <div class="card story">
+      <h2>Rules of the dojo</h2>
+      <ul>
+        <li>All you need is a web browser and its <strong>Developer Tools</strong> (F12 or Ctrl+Shift+I / Cmd+Option+I).</li>
+        <li>Everything runs in your own browser. There's no server to attack, so please don't try to break GitHub. 🙏</li>
+        <li>Flags look like <code>RyzenRonin{...}</code>. Submit them exactly as found.</li>
+        <li>Stuck? Every level has hints you can unfold. There's no penalty for using them.</li>
+        <li>Please don't share flags publicly. Share the dojo link instead!</li>
+      </ul>
+      <div class="progress" aria-hidden="true"><span id="bar"></span></div>
+      <div class="mono" id="score" style="font-size:13px;color:var(--muted)"></div>
+    </div>
+
+    <div id="complete" class="flagbox" hidden>
+      🏯 All six gates are open. You are no longer a ronin. You are a Shogun of the Web. Screenshot this and flex.
+    </div>
+
+    <div id="levels" class="grid" style="margin-top:16px"></div>
+
+    <footer>
+      Ryzen Ronin Dojo · a beginner web-exploitation CTF ·
+      <a href="#" onclick="resetProgress(); return false;">reset progress</a>
+    </footer>
+  </div>
+  <script src="assets/checker.js"></script>
+</body>
+</html>

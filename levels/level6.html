@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gate 6 · The Sealed Gate</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <a class="brand" href="../index.html"><span class="mon">浪</span> RYZEN RONIN DOJO</a>
+      <span class="pill">GATE 6 · 200 PTS</span>
+    </header>
+
+    <h1>The Sealed Gate</h1>
+    <p class="lede">The final gate. Sealed shut, guarded by a clearance check you can't even see.</p>
+
+    <div class="card story">
+      <p>
+        The last scroll lies behind the Sealed Gate. The button to open it has been
+        <strong>disabled</strong>, and even if you could press it, the gate checks your
+        <strong>clearance</strong>, which is quietly submitted with the form.
+      </p>
+      <p>Only those with <code>shogun</code> clearance may pass. You are… not that. Yet.</p>
+    </div>
+
+    <div class="card">
+      <h2>The Sealed Gate</h2>
+      <form id="gate">
+        <input type="hidden" name="clearance" id="clearance" value="apprentice">
+        <button class="btn" id="open" type="submit" disabled>🔒 Open the Sealed Gate</button>
+      </form>
+      <div id="result" hidden></div>
+    </div>
+
+    <div class="card">
+      <details class="hint"><summary>Hint 1</summary>
+        <p>Two obstacles: a disabled button and a hidden value. Both live in the HTML, and you can edit the live HTML with DevTools.</p>
+      </details>
+      <details class="hint"><summary>Hint 2</summary>
+        <p>In the <strong>Elements</strong>/<strong>Inspector</strong> tab, find the <code>&lt;button&gt;</code> and delete its <code>disabled</code> attribute (right-click → Edit attribute, or double-click it).</p>
+      </details>
+      <details class="hint"><summary>Hint 3</summary>
+        <p>Just above the button is an <code>&lt;input type="hidden"&gt;</code>. Double-click its <code>value</code> and change it to <code>shogun</code>. Then click the button.</p>
+      </details>
+    </div>
+
+    <p class="back"><a href="level5.html">← Previous gate</a> · <a href="../index.html">Back to the dojo to submit your flags</a></p>
+  </div>
+
+  <script>
+    const SCROLL_SIX = [33, 17, 21, 2, 27, 60, 48, 13, 5, 11, 26, 26, 80, 10, 7, 86, 29, 55, 9, 86,
+      70, 2, 59, 16, 51, 6, 85, 28, 62, 12, 80, 58, 7, 92, 2, 23, 70, 28, 108, 7, 17];
+
+    document.getElementById("gate").addEventListener("submit", (event) => {
+      event.preventDefault();
+      const clearance = document.getElementById("clearance").value.trim().toLowerCase();
+      const out = document.getElementById("result");
+      out.hidden = false;
+
+      if (clearance === "shogun") {
+        const key = clearance + "_clearance";
+        out.className = "flagbox";
+        out.textContent = "The gate groans open. Scroll #6: " +
+          SCROLL_SIX.map((b, i) => String.fromCharCode(b ^ key.charCodeAt(i % key.length))).join("");
+      } else {
+        out.className = "denied";
+        out.textContent = "The gate opens a crack… then slams shut. Clearance '" + clearance + "' is not enough.";
+      }
+    });
+  </script>
+</body>
+</html>
