@@ -11,8 +11,7 @@ RyzenRonin{...}
 
 ## ▶️ Play it
 
-**Live:** `https://<github-username>.github.io/<repo-name>/`
-(For example, if this repo is `ronin/ryzenronin-dojo`, the dojo lives at `https://ronin.github.io/ryzenronin-dojo/`.)
+### 👉 **https://wanmuadz22.github.io/RyzenRonin-CTF-/**
 
 1. Open the link above.
 2. Pick a gate (level) and read the story.
@@ -48,8 +47,8 @@ Every level has three unfoldable hints. There's no penalty for using them.
 ## 💻 Play locally (optional)
 
 ```bash
-git clone https://github.com/<github-username>/<repo-name>.git
-cd <repo-name>
+git clone https://github.com/wanmuadz22/RyzenRonin-CTF-.git
+cd RyzenRonin-CTF-
 python3 -m http.server 8000
 # open http://localhost:8000
 ```
